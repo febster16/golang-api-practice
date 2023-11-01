@@ -1,0 +1,113 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "GO API using Gin framework.",
+        "title": "GO API Course",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "paths": {
+        "/facts": {
+            "get": {
+                "description": "Fetch all facts data.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "facts"
+                ],
+                "summary": "ListFacts",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Search question",
+                        "name": "question",
+                        "in": "query"
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "description": "Create new fact data.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "facts"
+                ],
+                "summary": "CreateFacts",
+                "parameters": [
+                    {
+                        "description": "Fact object to create",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requests.CreateFactPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/requests.CreateFactPayload"
+                        }
+                    },
+                    "400": {
+                        "description": "Error parsing body payload"
+                    }
+                }
+            }
+        },
+        "/facts/{id}": {
+            "get": {
+                "description": "Fetch fact data by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "facts"
+                ],
+                "summary": "GetFactByID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Fact ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "ID is not a valid number"
+                    },
+                    "404": {
+                        "description": "Data not found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "requests.CreateFactPayload": {
+            "type": "object",
+            "properties": {
+                "answer": {
+                    "type": "string",
+                    "example": "Answer x."
+                },
+                "question": {
+                    "type": "string",
+                    "example": "Question x?"
+                }
+            }
+        }
+    }
+}

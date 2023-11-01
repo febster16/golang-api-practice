@@ -1,0 +1,75 @@
+basePath: /
+definitions:
+  requests.CreateFactPayload:
+    properties:
+      answer:
+        example: Answer x.
+        type: string
+      question:
+        example: Question x?
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: GO API using Gin framework.
+  title: GO API Course
+  version: "1.0"
+paths:
+  /facts:
+    get:
+      description: Fetch all facts data.
+      parameters:
+      - description: Search question
+        in: query
+        name: question
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: ListFacts
+      tags:
+      - facts
+    post:
+      consumes:
+      - application/json
+      description: Create new fact data.
+      parameters:
+      - description: Fact object to create
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/requests.CreateFactPayload'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/requests.CreateFactPayload'
+        "400":
+          description: Error parsing body payload
+      summary: CreateFacts
+      tags:
+      - facts
+  /facts/{id}:
+    get:
+      description: Fetch fact data by ID.
+      parameters:
+      - description: Fact ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: ID is not a valid number
+        "404":
+          description: Data not found
+      summary: GetFactByID
+      tags:
+      - facts
+swagger: "2.0"
