@@ -14,5 +14,5 @@ Go API using Gin framework and integrated with PostgreSQL and Swagger docs.
    docker compose build
    docker compose up
    ```
-The service should now be running locally on http://localhost:{YOUR_PORT}.
-To access the Swagger docs, go to /docs/index.html
+The service should now be running locally on `http://localhost:{YOUR_PORT}`.
+To access the Swagger docs, go to `/docs/index.html`
