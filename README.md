@@ -1,5 +1,5 @@
 # golang-api-practice
-Go API using Gin framework and integrated with PostgreSQL and Swagger docs.
+Simple Go API using Gin framework and integrated with PostgreSQL and Swagger docs.
 
 ## Getting Started
 
@@ -7,6 +7,7 @@ Go API using Gin framework and integrated with PostgreSQL and Swagger docs.
 2. To start the service, run the following command:
 
    ```shell
+   go mod download
    go run cmd/main.go
    ```
 3. Or, docker:
